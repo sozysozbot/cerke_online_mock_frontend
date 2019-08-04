@@ -465,7 +465,7 @@ async function sendAfterHalfAcceptance(message: AfterHalfAcceptance, src: Coord,
 
 async function sendStuff<T, U>(log: string, message: T, validateInput: (response: any) => U): Promise<U> {
     console.log(`Sending ${log}:`, JSON.stringify(message));
-    let url = 'http://localhost:5000/';
+    let url = 'https://serene-reef-96808.herokuapp.com/';
     const data = {
         "id": (Math.random() * 100000) | 0,
         "message": message
