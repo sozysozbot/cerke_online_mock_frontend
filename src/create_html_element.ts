@@ -4,7 +4,10 @@
  * Every call to document.createElement should live here.
  */
 
-function createArrowPiece(path: string, coord: readonly [number, number]) {
+import { toPath_, Coord, Piece } from "./type__piece";
+import { BOX_SIZE, PIECE_SIZE, MAX_PIECE_SIZE, coordToPieceXY, coordToPieceXY_Shifted, indToHop1Zuo1Horizontal } from "./html_top_left";
+
+export function createArrowPiece(path: string, coord: readonly [number, number]) {
     const [row_index, column_index] = coord;
     const top = 1 + row_index * BOX_SIZE + 159.5;
     const left = column_index * BOX_SIZE + 19.25;
@@ -18,7 +21,7 @@ function createArrowPiece(path: string, coord: readonly [number, number]) {
     return i;
 }
 
-function createPieceSizeImageOnBoardByPathAndXY(top: number, left: number, path: string, className: string): HTMLImageElement {
+export function createPieceSizeImageOnBoardByPathAndXY(top: number, left: number, path: string, className: string): HTMLImageElement {
     const i = document.createElement("img");
     i.setAttribute("draggable", "false");
     i.classList.add(className);
@@ -30,12 +33,12 @@ function createPieceSizeImageOnBoardByPathAndXY(top: number, left: number, path:
     return i;
 }
 
-function createPieceSizeImageOnBoardByPath(coord: Coord, path: string, className: string): HTMLImageElement {
+export function createPieceSizeImageOnBoardByPath(coord: Coord, path: string, className: string): HTMLImageElement {
     const {top, left} = coordToPieceXY(coord);
     return createPieceSizeImageOnBoardByPathAndXY(top, left, path, className);
 }
 
-function createCancelButton(): HTMLImageElement {
+export function createCancelButton(): HTMLImageElement {
     return createPieceSizeImageOnBoardByPathAndXY(
         1 + 9 * BOX_SIZE + (MAX_PIECE_SIZE - PIECE_SIZE),
         1 + 7.5 * BOX_SIZE,
@@ -44,19 +47,19 @@ function createCancelButton(): HTMLImageElement {
     );
 }
 
-function createPieceSizeImageOnBoardByPath_Shifted(coord: Coord, path: string, className: string): HTMLImageElement {
+export function createPieceSizeImageOnBoardByPath_Shifted(coord: Coord, path: string, className: string): HTMLImageElement {
     const {top, left} = coordToPieceXY_Shifted(coord);
     return createPieceSizeImageOnBoardByPathAndXY(top, left, path, className);
 }
 
-function createPieceSizeSelectionButtonOnBoard_Shifted(coord: Coord) {
+export function createPieceSizeSelectionButtonOnBoard_Shifted(coord: Coord) {
     const centralNode = createPieceSizeImageOnBoardByPath_Shifted(coord, "selection2", "selection");
     centralNode.style.cursor = "pointer";
     centralNode.style.zIndex = "200";
     return centralNode;
 }
 
-function createCircleGuideImageAt(coord: Coord, path: string): HTMLImageElement {
+export function createCircleGuideImageAt(coord: Coord, path: string): HTMLImageElement {
     const [row_index, column_index] = coord;
     const img = document.createElement("img");
     img.setAttribute("draggable", "false");
@@ -71,7 +74,7 @@ function createCircleGuideImageAt(coord: Coord, path: string): HTMLImageElement 
     return img;
 }
 
-function createCiurl(side: boolean, o: { left: number, top: number, rotateDeg: number }): HTMLImageElement {
+export function createCiurl(side: boolean, o: { left: number, top: number, rotateDeg: number }): HTMLImageElement {
     const img = document.createElement("img");
     img.setAttribute("draggable", "false");
     img.src = `image/ciurl_${side}.png`;
@@ -86,7 +89,7 @@ function createCiurl(side: boolean, o: { left: number, top: number, rotateDeg: n
     return img;
 }
 
-function createPieceImgToBePlacedOnHop1zuo1(ind: number, path: string): HTMLImageElement {
+export function createPieceImgToBePlacedOnHop1zuo1(ind: number, path: string): HTMLImageElement {
     return createPieceSizeImageOnBoardByPathAndXY(
         1 + (MAX_PIECE_SIZE - PIECE_SIZE) / 2,
         indToHop1Zuo1Horizontal(ind),
@@ -95,11 +98,11 @@ function createPieceImgToBePlacedOnHop1zuo1(ind: number, path: string): HTMLImag
     );
 }
 
-function createPieceImgToBePlacedOnBoard(coord: Coord, piece: Piece): HTMLImageElement {
+export function createPieceImgToBePlacedOnBoard(coord: Coord, piece: Piece): HTMLImageElement {
     return createPieceSizeImageOnBoardByPath(coord, toPath_(piece), "piece_image_on_board");
 }
 
-function createImageButton(img_name: String, top: number): HTMLInputElement {
+export function createImageButton(img_name: String, top: number): HTMLInputElement {
     const node = document.createElement("input");
     node.setAttribute("type", "image");
     node.src = `image/${img_name}.png`;

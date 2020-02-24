@@ -1,8 +1,11 @@
-const BOX_SIZE = 70;
-const MAX_PIECE_SIZE = BOX_SIZE - 1;
-const PIECE_SIZE = 60;
+import {
+    Coord,
+} from "./type__piece";
+export const BOX_SIZE = 70;
+export const MAX_PIECE_SIZE = BOX_SIZE - 1;
+export const PIECE_SIZE = 60;
 
-function coordToPieceXY(coord: Coord) {
+export function coordToPieceXY(coord: Coord) {
     const [row_index, column_index] = coord;
     return {
         top: 1 + row_index * BOX_SIZE + (MAX_PIECE_SIZE - PIECE_SIZE) / 2,
@@ -10,7 +13,7 @@ function coordToPieceXY(coord: Coord) {
     };
 }
 
-function coordToPieceXY_Shifted(coord: Coord) {
+export function coordToPieceXY_Shifted(coord: Coord) {
     const [row_index, column_index] = coord;
     return {
         top: 1 + row_index * BOX_SIZE + (MAX_PIECE_SIZE - PIECE_SIZE),
@@ -18,10 +21,10 @@ function coordToPieceXY_Shifted(coord: Coord) {
     };
 }
 
-function indToHop1Zuo1Horizontal(ind: number) {
+export function indToHop1Zuo1Horizontal(ind: number) {
     return 1 + ind * BOX_SIZE + (MAX_PIECE_SIZE - PIECE_SIZE) / 2;
 }
 
-function indToHo1Zuo1OfDownward(ind: number) {
+export function indToHo1Zuo1OfDownward(ind: number) {
     return  {top: -135 /* FIXME: magic */, left: indToHop1Zuo1Horizontal(ind)};
 }

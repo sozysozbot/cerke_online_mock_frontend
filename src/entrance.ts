@@ -1,5 +1,6 @@
-import Res_RandomEntry = type__message.Ret_RandomEntry;
-import Res_RandomPoll = type__message.Ret_RandomPoll;
+import { Ret_RandomEntry, Ret_RandomPoll } from "./lib/api2/type__message"
+import { API_ORIGIN } from "./env";
+
 
 let UNLOAD_TRIGGERED_BY_USER: boolean = true;
 
@@ -36,7 +37,7 @@ window.addEventListener("beforeunload", function(e) {
 });
 
 async function sendCancel<U>(access_token: AccessToken, validateInput: (response: any) => U): Promise<U> {
-    return await sendSomethingSomewhere("http://localhost:23564/random/cancel", {
+    return await sendSomethingSomewhere(`${API_ORIGIN}/random/cancel`, {
         access_token,
     }, validateInput);
 }
@@ -50,21 +51,21 @@ function let_the_game_begin(access_token: AccessToken, is_first_move_my_move: bo
     location.href = "main.html";
 }
 
-let RESULT: Res_RandomEntry | undefined;
+let RESULT: Ret_RandomEntry | undefined;
 
 function apply_for_random_game() {
     (async () => {
-        let res: Res_RandomEntry = await sendEntrance<Res_RandomEntry>((a) => a);
+        let res: Ret_RandomEntry = await sendEntrance<Ret_RandomEntry>((a) => a);
         RESULT = res;
         while (res.state != "let_the_game_begin") {
             await new Promise((resolve) => setTimeout(resolve, (2 + Math.random()) * 200 * 0.8093));
-            const newRes: Res_RandomPoll = await sendPoll<Res_RandomPoll>(res.access_token as AccessToken, (a) => a);
+            const newRes: Ret_RandomPoll = await sendPoll<Ret_RandomPoll>(res.access_token as AccessToken, (a) => a);
             if (newRes.legal) {
                 res = newRes.ret;
                 RESULT = res;
             } else {
                 // re-entry
-                res = await sendEntrance<Res_RandomEntry>((a) => a);
+                res = await sendEntrance<Ret_RandomEntry>((a) => a);
                 RESULT = res;
             }
         }
@@ -73,7 +74,7 @@ function apply_for_random_game() {
 }
 
 async function sendPoll<U>(access_token: AccessToken, validateInput: (response: any) => U): Promise<U> {
-    return await sendSomethingSomewhere("http://localhost:23564/random/poll", {
+    return await sendSomethingSomewhere(`${API_ORIGIN}/random/poll`, {
         access_token,
     }, validateInput);
 }
@@ -103,5 +104,7 @@ async function sendSomethingSomewhere<T, U>(url: string, data: T, validateInput:
 }
 
 async function sendEntrance<U>(validateInput: (response: any) => U): Promise<U> {
-    return await sendSomethingSomewhere("http://localhost:23564/random/entry", {}, validateInput);
+    return await sendSomethingSomewhere(`${API_ORIGIN}/random/entry`, {}, validateInput);
 }
+
+apply_for_random_game();
