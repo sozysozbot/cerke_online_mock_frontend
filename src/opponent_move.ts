@@ -1,3 +1,17 @@
+import { AbsoluteCoord, Profession, Color, SrcStepDstFinite, SrcDst, Ciurl, Ret_WhetherTyMokPoll } from "./lib/api2/type__message"
+import {
+    Coord,
+    Piece,
+    NonTam2PieceDownward,
+    Side,
+    coordEq,
+} from "./type__piece";
+import { fromAbsoluteCoord,GAME_STATE } from "./game_state";
+import { coordToPieceXY, coordToPieceXY_Shifted, indToHo1Zuo1OfDownward } from "./html_top_left";
+import { createArrowPiece } from "./create_html_element";
+import { displayCiurl, animateStepTamLogo, animateWaterEntryLogo, animatePunishStepTam, drawField, calculateHandsAndScore, sendStuffTo, endSeason, increaseRateAndAnimate, removeChildren } from "./main";
+import { DICTIONARY } from "./dictionary";
+
 interface OpponentMoveWithPotentialWaterEntry {
     type: "NonTamMove";
     data: SrcDst | SrcStepDstFinite;
@@ -66,7 +80,7 @@ function isWater([row, col]: Coord): boolean {
  * @param total_duration total duration in millisecond
  * @param rotate angle to rotate, in degrees
  */
-async function animateNode(node: HTMLElement,
+export async function animateNode(node: HTMLElement,
                            total_duration: number,
                            to: {top: number, left: number},
                            from: {top: number, left: number},
@@ -82,7 +96,7 @@ async function animateNode(node: HTMLElement,
     await new Promise((resolve) => setTimeout(resolve, total_duration));
 }
 
-async function animateOpponentSrcStepDstFinite(p: SrcStepDstFinite) {
+export async function animateOpponentSrcStepDstFinite(p: SrcStepDstFinite) {
     await animateOpponentSrcStepDstFinite_(
         fromAbsoluteCoord(p.src),
         fromAbsoluteCoord(p.step),
@@ -103,7 +117,7 @@ async function animateOpponentSteppingOverCiurl(
     eraseArrow();
 }
 
-async function animateOpponentInfAfterStep(p: {
+export async function animateOpponentInfAfterStep(p: {
     src: Coord,
     step: Coord,
     plannedDirection: Coord,
@@ -403,7 +417,7 @@ async function animateOpponentSrcStepDstFinite_(src: Coord, step: Coord, dest: C
     }
 }
 
-async function animateOpponentSrcDst(p: SrcDst) {
+export async function animateOpponentSrcDst(p: SrcDst) {
     const src: Coord = fromAbsoluteCoord(p.src);
     const dst: Coord = fromAbsoluteCoord(p.dest);
     if (p.water_entry_ciurl) {
@@ -480,7 +494,7 @@ async function animateOpponentSrcDst_(src: Coord, dst: Coord, water_entry_ciurl?
     }
 }
 
-async function animateOpponentFromHand(piece: NonTam2PieceDownward, dest: Coord) {
+export async function animateOpponentFromHand(piece: NonTam2PieceDownward, dest: Coord) {
     // remove the corresponding one from hand
     const ind = GAME_STATE.f.hop1zuo1OfDownward.findIndex(
         (p) => p.color === piece.color && p.prof === piece.prof,
@@ -506,7 +520,7 @@ async function animateOpponentFromHand(piece: NonTam2PieceDownward, dest: Coord)
     drawField();
 }
 
-async function animateOpponentTamNoStep(src: Coord, fstdst: Coord, snddst: Coord) {
+export async function animateOpponentTamNoStep(src: Coord, fstdst: Coord, snddst: Coord) {
     const piece: Piece | null = GAME_STATE.f.currentBoard[src[0]][src[1]];
     if (piece === null) {
         throw new Error("src is unoccupied");
@@ -535,13 +549,13 @@ async function animateOpponentTamNoStep(src: Coord, fstdst: Coord, snddst: Coord
     drawField();
 }
 
-async function animateOpponentTamSteppingDuringFormer(p: {src: Coord, firstDest: Coord, secondDest: Coord, step: Coord}) {
+export async function animateOpponentTamSteppingDuringFormer(p: {src: Coord, firstDest: Coord, secondDest: Coord, step: Coord}) {
     await animateOpponentSrcStepDstFinite_(p.src, p.step, p.firstDest);
     await new Promise((resolve) => setTimeout(resolve, 300 * 0.8093));
     await animateOpponentSrcDst_(p.firstDest, p.secondDest);
 }
 
-async function animateOpponentTamSteppingDuringLatter(p: {src: Coord, firstDest: Coord, secondDest: Coord, step: Coord}) {
+export async function animateOpponentTamSteppingDuringLatter(p: {src: Coord, firstDest: Coord, secondDest: Coord, step: Coord}) {
     await animateOpponentSrcDst_(p.src, p.firstDest);
     await new Promise((resolve) => setTimeout(resolve, 300 * 0.8093));
     await animateOpponentSrcStepDstFinite_(p.firstDest, p.step, p.secondDest);

@@ -1,20 +1,34 @@
-type Hop1Zuo1 = NonTam2Piece[];
+import {
+    NonTam2Piece,
+    Coord,
+    Piece,
+    Board,
+    NonTam2PieceDownward,
+    NonTam2PieceUpward,
+    BoardIndex,
+    rotateBoard,
+    Side
+} from "./type__piece";
+import { AbsoluteCoord, AbsoluteColumn, Profession, AbsoluteRow, Color } from "./lib/api2/type__message"
+import { sendMainPoll } from "./main";
 
-interface Field {
+export type Hop1Zuo1 = NonTam2Piece[];
+
+export interface Field {
     currentBoard: Board;
     hop1zuo1OfUpward: NonTam2PieceUpward[];
     hop1zuo1OfDownward: NonTam2PieceDownward[];
 }
 
-type Season = 0 | 1 | 2 | 3;
-type Log2_Rate = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+export type Season = 0 | 1 | 2 | 3;
+export type Log2_Rate = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 /*
  * Theoretically speaking, it is necessary to distinguish x32 and x64
  * because it is possible to score 1 point (3+3-5).
  * Not that it will ever be of use in any real situation.
  */
 
-interface GAME_STATE {
+export interface GAME_STATE {
     f: Field;
     IA_is_down: boolean;
     tam_itself_is_tam_hue: boolean;
@@ -68,15 +82,15 @@ function fromAbsoluteCoord_([absrow, abscol]: AbsoluteCoord, IA_is_down: boolean
     }
 }
 
-function toAbsoluteCoord(coord: Coord): AbsoluteCoord {
+export function toAbsoluteCoord(coord: Coord): AbsoluteCoord {
     return toAbsoluteCoord_(coord, GAME_STATE.IA_is_down);
 }
 
-function fromAbsoluteCoord(abs: AbsoluteCoord): Coord {
+export function fromAbsoluteCoord(abs: AbsoluteCoord): Coord {
     return fromAbsoluteCoord_(abs, GAME_STATE.IA_is_down);
 }
 
-const initial_board_with_IA_down: Board = [
+export const initial_board_with_IA_down: Board = [
     [{ color: Color.Huok2, prof: Profession.Kua2, side: Side.Downward },
         { color: Color.Huok2, prof: Profession.Maun1, side: Side.Downward }, { color: Color.Huok2, prof: Profession.Kaun1, side: Side.Downward }, { color: Color.Huok2, prof: Profession.Uai1, side: Side.Downward }, { color: Color.Kok1, prof: Profession.Io, side: Side.Downward }, { color: Color.Kok1, prof: Profession.Uai1, side: Side.Downward }, { color: Color.Kok1, prof: Profession.Kaun1, side: Side.Downward }, { color: Color.Kok1, prof: Profession.Maun1, side: Side.Downward }, { color: Color.Kok1, prof: Profession.Kua2, side: Side.Downward }],
     [{ color: Color.Kok1, prof: Profession.Tuk2, side: Side.Downward }, {color: Color.Kok1, prof: Profession.Gua2, side: Side.Downward }, null, { color: Color.Kok1, prof: Profession.Dau2, side: Side.Downward }, null, { color: Color.Huok2, prof: Profession.Dau2, side: Side.Downward }, null, {color: Color.Huok2, prof: Profession.Gua2, side: Side.Downward }, { color: Color.Huok2, prof: Profession.Tuk2, side: Side.Downward }],
@@ -90,7 +104,7 @@ const initial_board_with_IA_down: Board = [
         { color: Color.Kok1, prof: Profession.Maun1, side: Side.Upward }, { color: Color.Kok1, prof: Profession.Kaun1, side: Side.Upward }, { color: Color.Kok1, prof: Profession.Uai1, side: Side.Upward }, { color: Color.Huok2, prof: Profession.Io, side: Side.Upward }, { color: Color.Huok2, prof: Profession.Uai1, side: Side.Upward }, { color: Color.Huok2, prof: Profession.Kaun1, side: Side.Upward }, { color: Color.Huok2, prof: Profession.Maun1, side: Side.Upward }, { color: Color.Huok2, prof: Profession.Kua2, side: Side.Upward }],
 ];
 
-let GAME_STATE: GAME_STATE = ((p: {IA_is_down: boolean}) => {
+export let GAME_STATE: GAME_STATE = ((p: {IA_is_down: boolean}) => {
     console.log("0");
     
     let _is_my_turn: boolean = true; // override this by calling the setter
