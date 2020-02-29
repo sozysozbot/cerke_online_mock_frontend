@@ -1,6 +1,6 @@
-type ArrayUpTo4<T> = [T] | [T, T] | [T, T, T] | [T, T, T, T];
-type Digit = "num00" | "num01" | "num02" | "num03" | "num04" | "num05" | "num06" | "num07" | "num08" | "num09" | "num10" | "neg" | "num100";
-const { drawScoreDisplay, drawFinalScoreDisplay } = (() => {
+export type ArrayUpTo4<T> = [T] | [T, T] | [T, T, T] | [T, T, T, T];
+export type Digit = "num00" | "num01" | "num02" | "num03" | "num04" | "num05" | "num06" | "num07" | "num08" | "num09" | "num10" | "neg" | "num100";
+export const { drawScoreDisplay, drawFinalScoreDisplay } = (() => {
 function toDigits(num: number): Digit[] {
     if (num % 1 !== 0) {
         throw new Error("non-integer");
