@@ -1,4 +1,4 @@
-import { Profession } from "./lib/api2/type__message";
+import { Profession } from "cerke_online_api";
 import {
   Board,
   Coord,

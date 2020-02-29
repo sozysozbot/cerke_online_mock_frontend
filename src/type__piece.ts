@@ -1,4 +1,4 @@
-import { Color, Profession } from "./lib/api2/type__message";
+import { Color, Profession } from "cerke_online_api";
 
 export enum Side {
   Upward, // Pieces that points upward. Denoted by @^@ in the ASCII notation.

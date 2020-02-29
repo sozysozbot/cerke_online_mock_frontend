@@ -15,7 +15,7 @@ import {
   Profession,
   AbsoluteRow,
   Color,
-} from "./lib/api2/type__message";
+} from "cerke_online_api";
 import { sendMainPoll } from "./main";
 
 export type Hop1Zuo1 = NonTam2Piece[];

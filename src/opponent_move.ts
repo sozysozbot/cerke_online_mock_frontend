@@ -6,7 +6,7 @@ import {
   SrcDst,
   Ciurl,
   Ret_WhetherTyMokPoll,
-} from "./lib/api2/type__message";
+} from "cerke_online_api";
 import {
   Coord,
   Piece,

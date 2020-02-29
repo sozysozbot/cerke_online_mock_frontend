@@ -56,7 +56,7 @@ import {
   Ret_NormalMove,
   Ret_InfAfterStep,
   InfAfterStep,
-} from "./lib/api2/type__message";
+} from "cerke_online_api";
 import {
   calculateMovablePositions,
   canGetOccupiedByNonTam,
@@ -76,6 +76,7 @@ import {
   drawScoreDisplay,
   ArrayUpTo4,
 } from "./score_display";
+import { ObtainablePieces, calculate_hands_and_score_from_pieces } from "cerke_hands_and_score";
 
 const { stopPolling, resumePolling, isPollingAllowed, allowPolling } = (() => {
   let POLLING_ALLOWED = true;
