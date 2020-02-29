@@ -6,7 +6,8 @@
     "postinstall": "./deps.sh",
     "build": "webpack -p --mode production",
     "build:dev": "API_ORIGIN=LOCAL webpack --mode development",
-    "start": "API_ORIGIN=LOCAL webpack-dev-server"
+    "start": "API_ORIGIN=LOCAL webpack-dev-server",
+    "format": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'"
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,8 @@
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "prettier": "^1.19.1"
   }
 }
