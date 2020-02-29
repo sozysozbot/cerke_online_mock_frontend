@@ -1,11 +1,4 @@
-const {
-  calculate_hands_and_score_from_pieces,
-  hand_to_score,
-} = require("exports-loader?calculate_hands_and_score_from_pieces,hand_to_score!./lib/cerke_calculate_hands/calculate_hand");
-(window as any).calculate_hands_and_score_from_pieces = calculate_hands_and_score_from_pieces;
-(window as any).hand_to_score = hand_to_score;
-
-import { Ret_RandomEntry, Ret_RandomPoll } from "./lib/api2/type__message";
+import { Ret_RandomEntry, Ret_RandomPoll } from "cerke_online_api";
 import { API_ORIGIN } from "./env";
 
 let UNLOAD_TRIGGERED_BY_USER: boolean = true;

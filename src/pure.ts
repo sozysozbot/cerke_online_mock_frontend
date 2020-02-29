@@ -3,7 +3,7 @@
  * - no write to the global variable
  * - no DOM editing
  */
-import { Ciurl } from "./lib/api2/type__message";
+import { Ciurl } from "cerke_online_api";
 import { Coord } from "./type__piece";
 
 export function filterInOneDirectionTillCiurlLimit(
