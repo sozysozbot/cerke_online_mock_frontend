@@ -46,6 +46,7 @@ import { filterInOneDirectionTillCiurlLimit } from "./pure"
 import { BOX_SIZE, MAX_PIECE_SIZE, indToHop1Zuo1Horizontal, PIECE_SIZE } from "./html_top_left";
 import { DICTIONARY } from "./dictionary";
 import { API_ORIGIN } from "./env";
+import { drawFinalScoreDisplay, drawScoreDisplay, ArrayUpTo4 } from "./score_display";
 
 const {stopPolling, resumePolling, isPollingAllowed, allowPolling} = (() => {
     let POLLING_ALLOWED = true;

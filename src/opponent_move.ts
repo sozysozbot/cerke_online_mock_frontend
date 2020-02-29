@@ -11,6 +11,7 @@ import { coordToPieceXY, coordToPieceXY_Shifted, indToHo1Zuo1OfDownward } from "
 import { createArrowPiece } from "./create_html_element";
 import { displayCiurl, animateStepTamLogo, animateWaterEntryLogo, animatePunishStepTam, drawField, calculateHandsAndScore, sendStuffTo, endSeason, increaseRateAndAnimate, removeChildren } from "./main";
 import { DICTIONARY } from "./dictionary";
+import { drawScoreDisplay } from "./score_display";
 
 interface OpponentMoveWithPotentialWaterEntry {
     type: "NonTamMove";
