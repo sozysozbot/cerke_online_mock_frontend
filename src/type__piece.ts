@@ -1,26 +1,5 @@
 import { Color, Profession } from "cerke_online_api";
-import {
-  Side,
-  NonTam2Piece,
-  Piece,
-} from "cerke_online_utility/lib";
-export {
-  Side,
-  NonTam2Piece,
-  fromUpOrDown,
-  toUpOrDown,
-  NonTam2PieceDownward,
-  NonTam2PieceUpward,
-  Piece,
-  Tuple9,
-  Board,
-  Row,
-  BoardIndex,
-  Coord,
-  coordEq,
-  rotateCoord,
-  rotateBoard
-} from "cerke_online_utility/lib";
+import { Side, NonTam2Piece, Piece } from "cerke_online_utility/lib";
 
 export function toPath(p: NonTam2Piece): string {
   const sideToPath = function(side: Side): string {

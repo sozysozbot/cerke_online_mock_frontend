@@ -13,7 +13,7 @@ import {
   NonTam2PieceDownward,
   Side,
   coordEq,
-} from "./type__piece";
+} from "cerke_online_utility/lib";
 import { fromAbsoluteCoord, GAME_STATE } from "./game_state";
 import {
   coordToPieceXY,

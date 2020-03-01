@@ -4,7 +4,7 @@
  * - no DOM editing
  */
 import { Ciurl } from "cerke_online_api";
-import { Coord } from "./type__piece";
+import { Coord } from "cerke_online_utility/lib";
 
 export function filterInOneDirectionTillCiurlLimit(
   guideListGreen: Coord[],

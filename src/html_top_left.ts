@@ -1,4 +1,4 @@
-import { Coord } from "./type__piece";
+import { Coord } from "cerke_online_utility/lib";
 export const BOX_SIZE = 70;
 export const MAX_PIECE_SIZE = BOX_SIZE - 1;
 export const PIECE_SIZE = 60;

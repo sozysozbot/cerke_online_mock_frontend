@@ -1,21 +1,14 @@
 import {
+  Side,
   NonTam2Piece,
-  Coord,
-  Piece,
-  Board,
   NonTam2PieceDownward,
   NonTam2PieceUpward,
-  BoardIndex,
+  Piece,
+  Board,
+  Coord,
   rotateBoard,
-  Side,
-} from "./type__piece";
-import {
-  AbsoluteCoord,
-  AbsoluteColumn,
-  Profession,
-  AbsoluteRow,
-  Color,
-} from "cerke_online_api";
+} from "cerke_online_utility/lib";
+import { AbsoluteCoord, Profession, Color } from "cerke_online_api";
 import { sendMainPoll } from "./main";
 
 export type Hop1Zuo1 = NonTam2Piece[];
@@ -47,7 +40,7 @@ export interface GAME_STATE {
   scores_of_each_season: [number[], number[], number[], number[]];
 }
 
-import { toAbsoluteCoord_, fromAbsoluteCoord_ } from "cerke_online_utility/lib"
+import { toAbsoluteCoord_, fromAbsoluteCoord_ } from "cerke_online_utility/lib";
 
 export function toAbsoluteCoord(coord: Coord): AbsoluteCoord {
   return toAbsoluteCoord_(coord, GAME_STATE.IA_is_down);

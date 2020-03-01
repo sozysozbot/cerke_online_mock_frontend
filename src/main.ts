@@ -29,7 +29,6 @@ import {
   animateNode,
 } from "./opponent_move";
 import {
-  toPath_,
   Coord,
   Piece,
   coordEq,
@@ -40,8 +39,8 @@ import {
   NonTam2Piece,
   BoardIndex,
   rotateBoard,
-  toPath,
-} from "./type__piece";
+} from "cerke_online_utility/lib";
+import { toPath_, toPath } from "./type__piece";
 import {
   AbsoluteCoord,
   Profession,
@@ -61,7 +60,7 @@ import {
   calculateMovablePositions,
   canGetOccupiedByNonTam,
   canGetOccupiedBy,
-} from "./calculate_movable";
+} from "cerke_online_utility/lib";
 import { filterInOneDirectionTillCiurlLimit } from "./pure";
 import {
   BOX_SIZE,
