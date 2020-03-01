@@ -79,34 +79,6 @@ type OpponentMove =
       }>;
     };
 
-function isWaterAbs([row, col]: AbsoluteCoord): boolean {
-  return (
-    (row === "O" && col === "N") ||
-    (row === "O" && col === "T") ||
-    (row === "O" && col === "Z") ||
-    (row === "O" && col === "X") ||
-    (row === "O" && col === "C") ||
-    (row === "I" && col === "Z") ||
-    (row === "U" && col === "Z") ||
-    (row === "Y" && col === "Z") ||
-    (row === "AI" && col === "Z")
-  );
-}
-
-function isWater([row, col]: Coord): boolean {
-  return (
-    (row === 4 && col === 2) ||
-    (row === 4 && col === 3) ||
-    (row === 4 && col === 4) ||
-    (row === 4 && col === 5) ||
-    (row === 4 && col === 6) ||
-    (row === 2 && col === 4) ||
-    (row === 3 && col === 4) ||
-    (row === 5 && col === 4) ||
-    (row === 6 && col === 4)
-  );
-}
-
 /**
  * @param total_duration total duration in millisecond
  * @param rotate angle to rotate, in degrees

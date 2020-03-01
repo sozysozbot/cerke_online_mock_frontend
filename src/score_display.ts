@@ -1,4 +1,4 @@
-import { HandAndNegativeHand,hand_to_score  } from "cerke_hands_and_score";
+import { HandAndNegativeHand, hand_to_score } from "cerke_hands_and_score";
 
 export type ArrayUpTo4<T> = [T] | [T, T] | [T, T, T] | [T, T, T, T];
 export type Digit =

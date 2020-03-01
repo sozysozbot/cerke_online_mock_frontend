@@ -76,7 +76,10 @@ import {
   drawScoreDisplay,
   ArrayUpTo4,
 } from "./score_display";
-import { ObtainablePieces, calculate_hands_and_score_from_pieces } from "cerke_hands_and_score";
+import {
+  ObtainablePieces,
+  calculate_hands_and_score_from_pieces,
+} from "cerke_hands_and_score";
 
 const { stopPolling, resumePolling, isPollingAllowed, allowPolling } = (() => {
   let POLLING_ALLOWED = true;
